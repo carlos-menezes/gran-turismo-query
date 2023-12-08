@@ -5,8 +5,14 @@ use std::{
 
 use byteorder::{LittleEndian, ReadBytesExt};
 
-use crate::{constants::PACKET_MAGIC_VALUE, errors::ParsePacketError, flags::PacketFlags};
+use crate::{
+    constants::{PACKET_MAGIC_VALUE, PACKET_SIZE},
+    cypher,
+    errors::ParsePacketError,
+    flags::PacketFlags,
+};
 
+#[derive(Debug)]
 pub struct Packet {
     pub position: [f32; 3],
     pub velocity: [f32; 3],
@@ -64,10 +70,11 @@ pub struct Packet {
     pub car_code: i32,
 }
 
-impl TryFrom<&[u8]> for Packet {
+impl TryFrom<&[u8; PACKET_SIZE]> for Packet {
     type Error = ParsePacketError;
 
-    fn try_from(data: &[u8]) -> Result<Self, Self::Error> {
+    fn try_from(data: &[u8; PACKET_SIZE]) -> Result<Self, Self::Error> {
+        let data = cypher::decrypt(data).unwrap();
         let mut cursor = Cursor::new(data);
         let magic = cursor.read_u32::<LittleEndian>()?;
         verify_magic_value(magic)?;
@@ -166,8 +173,8 @@ impl TryFrom<&[u8]> for Packet {
         // For cars with more than 7 gears (e.g. LC500), the `car_code` is overridden.
 
         let mut gear_ratios: [f32; 7] = [0f32; 7];
-        for i in 0..7 {
-            gear_ratios[i] = cursor.read_f32::<LittleEndian>()?;
+        for gear_ratio in &mut gear_ratios {
+            *gear_ratio = cursor.read_f32::<LittleEndian>()?;
         }
 
         // Skip 8th gear

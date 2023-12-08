@@ -18,7 +18,7 @@ pub fn decrypt(data: &[u8; PACKET_SIZE]) -> Result<[u8; PACKET_SIZE], CypherErro
     // Decrypt the packet using Salsa20 cipher
     let mut cipher = Salsa20::new(PACKET_DECRYPTION_KEY[0..32].into(), &iv.into());
     let mut decrypted_buf = *data;
-    cipher.apply_keystream(&mut decrypted_buf[0x44..]);
+    cipher.apply_keystream(&mut decrypted_buf[..]);
 
     Ok(decrypted_buf)
 }
