@@ -1,6 +1,7 @@
 use bitflags::bitflags;
 
 bitflags! {
+    #[cfg_attr(feature = "json", derive(serde::Serialize, serde::Deserialize))]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct PacketFlags: u16 {
         const None = 0;
