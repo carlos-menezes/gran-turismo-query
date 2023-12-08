@@ -1,14 +1,14 @@
 [package]
 name = "gran-turismo-query"
 description = "Implements the packet parser for Gran Turismo 7 telemetry data, allowing a developer to retrieve data from a running game."
-version = "0.1.2"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bitflags = "2.4.1"
+bitflags = { version = "2.4.1", features = ["serde"] }
 byteorder = "1.5.0"
 salsa20 = "0.10.2"
 thiserror = "1.0.50"
