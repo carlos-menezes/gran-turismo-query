@@ -1,6 +1,7 @@
 # gran-turismo-query
 
 ![ci workflow](https://github.com/carlos-menezes/openmultiplayer-query/actions/workflows/ci.yml/badge.svg)
+![Crates.io](https://img.shields.io/crates/v/gran-turismo-query)
 
 Implements the packet parser for Gran Turismo 7 telemetry data, allowing a developer to retrieve data from a running game.
 
