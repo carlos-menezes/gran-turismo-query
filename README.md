@@ -5,6 +5,17 @@
 
 Implements the packet parser for Gran Turismo 7 telemetry data, allowing a developer to retrieve data from a running game.
 
+## Features
+
+Any of the features below may be added in `Cargo.toml` when importing the library as such:
+
+```toml
+[dependencies]
+gran-turismo-query = { version = "0.1.1", features = ["json"] }
+```
+
+- `json`: adds serde's `Serialize/Deserialize` to the `Packet` struct.
+
 ## Example
 
 1. Find the address of your PlayStation 5;

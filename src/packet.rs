@@ -12,6 +12,7 @@ use crate::{
     flags::PacketFlags,
 };
 
+#[cfg_attr(feature = "json", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug)]
 pub struct Packet {
     pub position: [f32; 3],
