@@ -11,7 +11,7 @@ Any of the features below may be added in `Cargo.toml` when importing the librar
 
 ```toml
 [dependencies]
-gran-turismo-query = { version = "0.1.2", features = ["json"] }
+gran-turismo-query = { version = "0.2.0", features = ["json"] }
 ```
 
 - `json`: adds serde's `Serialize/Deserialize` to the `Packet` struct.
