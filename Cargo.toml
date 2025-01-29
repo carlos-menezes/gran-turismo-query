@@ -1,7 +1,7 @@
 [package]
 name = "gran-turismo-query"
 description = "Implements the packet parser for Gran Turismo 7 telemetry data, allowing a developer to retrieve data from a running game."
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 license = "MIT"
 

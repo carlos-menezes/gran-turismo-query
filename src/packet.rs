@@ -13,7 +13,7 @@ use crate::{
 };
 
 #[cfg_attr(feature = "json", derive(serde::Serialize, serde::Deserialize))]
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Packet {
     pub position: [f32; 3],
     pub velocity: [f32; 3],
